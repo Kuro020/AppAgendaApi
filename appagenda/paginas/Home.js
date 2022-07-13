@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Flatlist, Alert } from 'react-native';
-import { visualizarTodosContatos } from './ContatoModel';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { CadastrarContatos, visualizarTodosContatos } from './ContatoModel';
 
-export default function Home() {
+export default function Home({navigation}) {
   const [dadosContatos, setDadosContatos] = useState([]);
 
   async function buscarContatos() {
@@ -25,20 +25,20 @@ export default function Home() {
     <View style={styles.container}>
       <Text>Contatos</Text>
 
-      <TouchableOpacity style={estilo.botaoCadastrar}>
-        <text style={estilo.botaoTextCadastrar}>Cadastrar Contatos</text>
+      <TouchableOpacity style={styles.botaoCadastrar} onPress={navigation.navigate('CadastrarContatos')}>
+        <Text style={styles.botaoTextCadastrar}>Cadastrar Contatos</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
 
-      <Flatlist
+      <FlatList
         data={dadosContatos}
         keyExtractor={dadosContatos => dadosContatos.id}
         renderItem={({ item }) =>
-          <TouchableOpacity style={estilo.botaoDados}>
-            <Text style={estilo.botaoTextoDados}>{item.id}</Text>
-            <Text style={estilo.botaoTextoDados}>{item.nome}</Text>
-            <Text style={estilo.botaoTextoDados}>{item.fone}</Text>
-            <Text style={estilo.botaoTextoDados}>{item.email}</Text>
+          <TouchableOpacity style={styles.botaoDados}>
+            <Text style={styles.botaoTextoDados}>{item.id}</Text>
+            <Text style={styles.botaoTextoDados}>{item.nome}</Text>
+            <Text style={styles.botaoTextoDados}>{item.fone}</Text>
+            <Text style={styles.botaoTextoDados}>{item.email}</Text>
           </TouchableOpacity>
         }
       />

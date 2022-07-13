@@ -1,8 +1,8 @@
 import React from 'react';
 import RotasBotao from './paginas/RotasBotao';
 
-export default from function App(){
+export default function App(){
   return(
-    <RotasBotao/>
+      <RotasBotao/>
   );
 }
